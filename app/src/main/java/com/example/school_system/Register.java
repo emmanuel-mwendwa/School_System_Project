@@ -26,7 +26,7 @@ import java.util.Map;
 public class Register extends AppCompatActivity {
 
     EditText fullName,email,password,phone;
-    Button registerBtn,goToLogin;
+    Button registerBtn,goToHome;
     boolean valid = true;
     FirebaseAuth fAuth;
     FirebaseFirestore fstore;
@@ -45,7 +45,7 @@ public class Register extends AppCompatActivity {
         password = findViewById(R.id.registerPassword);
         phone = findViewById(R.id.registerPhone);
         registerBtn = findViewById(R.id.registerBtn);
-        goToLogin = findViewById(R.id.gotoLogin);
+        goToHome = findViewById(R.id.gotohome);
 
         isTeacherBox = findViewById(R.id.isTeacher);
         isStudentBox = findViewById(R.id.isStudent);
@@ -110,7 +110,7 @@ public class Register extends AppCompatActivity {
 
                             df.set(userInfo);
 
-                            startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                            startActivity(new Intent(getApplicationContext(), Register.class));
                             finish();
                         }
                     }).addOnFailureListener(new OnFailureListener() {
@@ -123,10 +123,10 @@ public class Register extends AppCompatActivity {
             }
         });
 
-        goToLogin.setOnClickListener(new View.OnClickListener() {
+        goToHome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(), Login.class));
+                startActivity(new Intent(getApplicationContext(), Admin.class));
                 finish();
             }
         });

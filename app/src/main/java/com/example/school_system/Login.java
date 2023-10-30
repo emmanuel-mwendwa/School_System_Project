@@ -22,7 +22,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 public class Login extends AppCompatActivity {
 
     EditText email, password;
-    Button loginBtn, gotoRegister;
+    Button loginBtn;
     boolean valid = true;
     FirebaseAuth fAuth;
     FirebaseFirestore fStore;
@@ -38,7 +38,6 @@ public class Login extends AppCompatActivity {
         email = findViewById(R.id.loginEmail);
         password = findViewById(R.id.loginPassword);
         loginBtn = findViewById(R.id.loginBtn);
-        gotoRegister = findViewById(R.id.gotoRegister);
 
         loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -51,7 +50,7 @@ public class Login extends AppCompatActivity {
                     fAuth.signInWithEmailAndPassword(email.getText().toString(), password.getText().toString()).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
                         @Override
                         public void onSuccess(AuthResult authResult) {
-                            Toast.makeText(Login.this, "Loggedin Successfully", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(Login.this, "Logged in Successfully", Toast.LENGTH_SHORT).show();
                             checkPermission(fAuth.getUid());
                         }
                     }).addOnFailureListener(new OnFailureListener() {
@@ -61,13 +60,6 @@ public class Login extends AppCompatActivity {
                         }
                     });
                 }
-            }
-        });
-
-        gotoRegister.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(), Register.class));
             }
         });
 
@@ -90,7 +82,7 @@ public class Login extends AppCompatActivity {
 
                 if(documentSnapshot.getString("isTeacher") != null) {
                     // user is admin
-                    startActivity(new Intent(getApplicationContext(), Admin.class));
+                    startActivity(new Intent(getApplicationContext(), Lecturer.class));
                     finish();
                 }
 

@@ -2,7 +2,11 @@ package com.example.school_system;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+
+import com.google.firebase.auth.FirebaseAuth;
 
 public class Lecturer extends AppCompatActivity {
 
@@ -10,5 +14,11 @@ public class Lecturer extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lecturer);
+    }
+
+    public void logoutLecturer(View view) {
+        FirebaseAuth.getInstance().signOut();
+        startActivity(new Intent(getApplicationContext(), Login.class));
+        finish();
     }
 }
